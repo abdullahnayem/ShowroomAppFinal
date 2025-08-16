@@ -95,11 +95,7 @@ namespace VehicleShowroom.Utils
         {
             while (true)
             {
-                Console.WriteLine("Select Engine Type:");
-                Console.WriteLine("1. Oil");
-                Console.WriteLine("2. Gas");
-                Console.WriteLine("3. Diesel");
-
+                MenuHelper.ShowEngineTypeMenu();
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out int val) && Enum.IsDefined(typeof(EngineType), val))
                 {

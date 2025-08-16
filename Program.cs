@@ -3,30 +3,15 @@ using VehicleShowroom.Models;
 using VehicleShowroom.Services;
 using VehicleShowroom.Utils;
 
-/// <summary>
-/// Main program class for the Vehicle Showroom Management System.
-/// Provides a console-based interface for managing vehicles in the showroom.
-/// </summary>
 class Program
 {
-    /// <summary>
-    /// The main entry point of the application.
-    /// Runs an interactive console menu for vehicle showroom management.
-    /// </summary>
     static void Main()
     {
         Showroom showroom = new Showroom();
 
         while (true)
         {
-            Console.WriteLine("\n===== Vehicle Showroom Management =====");
-            Console.WriteLine("1. Add Vehicle");
-            Console.WriteLine("2. Remove Vehicle");
-            Console.WriteLine("3. Show Vehicles");
-            Console.WriteLine("4. Show Visitor Count");
-            Console.WriteLine("5. Exit");
-            Console.Write("Enter choice: ");
-
+            MenuHelper.ShowMainMenu();
             string choice = Console.ReadLine();
 
             switch (choice)
@@ -34,7 +19,6 @@ class Program
                 case "1":
                     AddVehicleMenu(showroom);
                     break;
-
                 case "2":
                     if (showroom.VehicleCount == 0)
                         Console.WriteLine("\n *** No vehicles available to remove.\n");
@@ -44,18 +28,14 @@ class Program
                         showroom.RemoveVehicle(model);
                     }
                     break;
-
                 case "3":
                     showroom.ShowVehicles();
                     break;
-
                 case "4":
                     showroom.ShowVisitorCount();
                     break;
-
                 case "5":
                     return;
-
                 default:
                     Console.WriteLine("Invalid choice. Try again.");
                     break;
@@ -69,10 +49,7 @@ class Program
     /// <param name="showroom">The showroom instance to add vehicles to.</param>
     static void AddVehicleMenu(Showroom showroom)
     {
-        Console.WriteLine("\nSelect Vehicle Type:");
-        Console.WriteLine("1. Normal Vehicle");
-        Console.WriteLine("2. Sports Vehicle");
-        Console.WriteLine("3. Heavy Vehicle");
+        MenuHelper.ShowVehicleTypeMenu();
         string type = InputHelper.ReadRequiredString("Choice: ");
 
         string model = InputHelper.ReadRequiredString("Enter Model Number: ");
